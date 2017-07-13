@@ -1,1 +1,1 @@
-// Sitewide js goes here!
+// Site wide js goes here!
