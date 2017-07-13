@@ -1,7 +1,7 @@
 # Static Site Builder
 
 ## Description
-This is the static site generator I build to aid in creating static sites.
+When you need your final output to pretend like it's 1999. 
 
 ## Requirements:
 - Yarn (^ v0.24.6)
