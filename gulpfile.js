@@ -66,7 +66,7 @@ gulp.task('sass-dev', function() {
  */
 gulp.task('sass-production', function() {
     return gulp.src('src/scss/styles.scss')
-        .pipe(sass({ style: 'compressed' }))
+        .pipe(sass({ style: 'compressed' }).on('error', sass.logError))
         .pipe(gulp.dest('./dist/css'))
 });
 
