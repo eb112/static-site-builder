@@ -17,3 +17,5 @@ When you need your final output to pretend like it's 1999.
 `gulp clean`: Clean dist folder 
 
 `gulp watch`: Watch files and build 
+
+`gulp test`: Test js src files with Mocha
