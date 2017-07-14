@@ -9,6 +9,7 @@ var argv = require('yargs').argv,
     concat = require('gulp-concat'),
     imagemin = require('gulp-imagemin'),
     clean = require('gulp-clean'),
+    mocha = require('gulp-mocha'),
     pump = require('pump'),
     vendorlist = require('./vendorlist');
 
@@ -80,7 +81,12 @@ gulp.task('fonts', function() {
         .pipe(gulp.dest('./dist/fonts'))
 });
 
-// Build for dev
+gulp.task('test', function() {
+    gulp.src('src/js/main.js', {read: false})
+        .pipe(mocha({reporter: 'nyan'}))
+});
+
+// Build Dev or Production
 gulp.task('build', ['clean'], function(){
     if(argv.dev) {
         gulp.start([ 'html', 'sass-dev', 'js', 'concat-js', 'concat-css', 'images', 'fonts']);   
