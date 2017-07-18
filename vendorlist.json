@@ -7,7 +7,7 @@
         "./node_modules/jquery/dist/jquery.min.js",
         "./node_modules/bootstrap/dist/js/bootstrap.min.js"
     ],
-    "fonts" : [
-        "./node_modules/font-awesome/fonts/*"
-    ]
+    "fileIncludes" : {
+        "./node_modules/font-awesome/fonts/*" : "fonts"
+    }
 }

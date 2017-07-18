@@ -104,11 +104,15 @@ gulp.task('html', function() {
 });
 
 /**
- * Moves required fonts over to dist
+ * Copy included files into proper folders
  */
-gulp.task('fonts', function() {
-    return gulp.src(vendorlist.fonts)
-        .pipe(gulp.dest('./dist/fonts'))
+gulp.task('fileIncludes', function() {
+    var files = vendorlist.fileCopy;
+
+    for (var key in files) {        
+        return gulp.src(key)
+            .pipe(gulp.dest("./dist/" + files[key]));
+    }  
 });
 
 /**
@@ -124,9 +128,9 @@ gulp.task('test', function() {
  */
 gulp.task('build', ['clean'], function(){
     if(argv.dev) {
-        gulp.start([ 'html', 'sass-dev', 'js', 'concat-js', 'concat-css', 'images', 'fonts']);   
+        gulp.start([ 'html', 'sass-dev', 'js', 'concat-js', 'concat-css', 'images', 'fileIncludes']);   
     } else if(argv.production) {
-        gulp.start([ 'html', 'sass-production', 'js-production', 'concat-js', 'concat-css', 'images', 'fonts']);   
+        gulp.start([ 'html', 'sass-production', 'js-production', 'concat-js', 'concat-css', 'images', 'fileIncludes']);   
     } else {
         throw new gulpUtil.PluginError({
             plugin: 'build',
