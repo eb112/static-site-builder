@@ -11,7 +11,8 @@ var argv = require('yargs').argv,
     clean = require('gulp-clean'),
     mocha = require('gulp-mocha'),
     pump = require('pump'),
-    vendorlist = require('./vendorlist');
+    vendorlist = require('./vendorlist'),
+    browserSync = require('browser-sync');
 
 gulp.task('default', function() { return true; });
 
@@ -45,9 +46,9 @@ gulp.task('concat-css', function() {
  * Moves images to dist folder and minifys
  */
 gulp.task('images', function() {
-	gulp.src('src/img/*')
-		.pipe(imagemin())
-		.pipe(gulp.dest('./dist/img'))
+    gulp.src('src/img/*')
+        .pipe(imagemin())
+        .pipe(gulp.dest('./dist/img'))
 });
 
 /**
@@ -140,9 +141,20 @@ gulp.task('build', ['clean'], function(){
 });
 
 /**
+ * Runs static server
+ */
+gulp.task('browserSync', function() {  
+    browserSync.init(["dist/**/*"], {
+        server: {
+            baseDir: "./dist/"
+        }
+    });
+});
+
+/**
  * Watches for changes in src sass, js, and html files then compiles
  */
-gulp.task('watch', function() {
+gulp.task('watch', ['browserSync'], function() {
     gulp.watch('src/scss/*.scss', ['sass-dev']);
     gulp.watch('src/js/*.js', ['js']);
     gulp.watch('src/**/*.html', ['html']);
