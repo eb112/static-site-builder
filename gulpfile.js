@@ -108,7 +108,7 @@ gulp.task('html', function() {
  * Copy included files into proper folders
  */
 gulp.task('fileIncludes', function() {
-    var files = vendorlist.fileCopy;
+    var files = vendorlist.fileIncludes;
 
     for (var key in files) {        
         return gulp.src(key)
